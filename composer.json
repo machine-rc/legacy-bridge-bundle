@@ -1,5 +1,5 @@
 {
-  "name": "buratinas/legacy-bridge-bundle",
+  "name": "machine-rc/legacy-bridge-bundle",
   "type": "symfony-bundle",
   "description": "Bridge Bundle for wrapping legacy php projects (e.g. without front controllers) into a symfony application.",
   "require": {
@@ -12,14 +12,14 @@
   "license": "MIT",
   "authors": [
     {
-      "name": "Ole Rößner",
-      "email": "oroessner@gmail.com"
+      "name": "Tadas Rimkus",
+      "email": "machinerevolutioncorporation@gmail.com"
     }
   ],
   "minimum-stability": "stable",
   "autoload": {
     "psr-4": {
-      "Buratinas\\LegacyBridgeBundle\\": ""
+      "Machine\\LegacyBridgeBundle\\": ""
     }
   }
 }
