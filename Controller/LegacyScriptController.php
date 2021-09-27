@@ -63,7 +63,7 @@ class LegacyScriptController implements ContainerAwareInterface
             }
         };
 
-        return StreamedResponse::create($requireLegacyScript);
+        return new StreamedResponse($requireLegacyScript);
     }
 
     /**

@@ -1,0 +1,18 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  machine_legacy_bridge.routing_loader:
+    class: Machine\LegacyBridgeBundle\Routing\LegacyRouteLoader
+    arguments:
+      $legacyPath: '%machine_legacy_bridge.legacy_path%'
+    tags: ['routing.loader']
+    public: true
+
+  machine_legacy_bridge.legacy_controller:
+    class: Machine\LegacyBridgeBundle\Controller\LegacyScriptController
+    calls:
+      - setContainer: ['@service_container']
+      - setPrependScript: ['%machine_legacy_bridge.prepend_script%']
+      - setAppendScript: ['%machine_legacy_bridge.append_script%']

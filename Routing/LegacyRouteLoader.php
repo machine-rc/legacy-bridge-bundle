@@ -29,8 +29,9 @@ class LegacyRouteLoader extends Loader
      * @param string                                $legacyPath
      * @param \Symfony\Component\Finder\Finder|null $finder
      */
-    public function __construct($legacyPath, Finder $finder = null)
+    public function __construct(string $legacyPath, Finder $finder = null)
     {
+        parent::__construct();
         $this->finder     = $finder ?: new Finder();
         $this->legacyPath = $legacyPath;
     }
