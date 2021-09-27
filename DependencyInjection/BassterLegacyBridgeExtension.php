@@ -1,6 +1,6 @@
 <?php
 
-namespace Basster\LegacyBridgeBundle\DependencyInjection;
+namespace Machine\LegacyBridgeBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -12,7 +12,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
  *
  * @link http://symfony.com/doc/current/cookbook/bundles/extension.html
  */
-class BassterLegacyBridgeExtension extends ConfigurableExtension
+class MachineLegacyBridgeExtension extends ConfigurableExtension
 {
     /** {@inheritdoc} */
     protected function loadInternal(

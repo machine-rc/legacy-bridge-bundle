@@ -4,12 +4,12 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="machine_legacy_bridge.routing_loader" class="Basster\LegacyBridgeBundle\Routing\LegacyRouteLoader">
+        <service id="machine_legacy_bridge.routing_loader" class="Machine\LegacyBridgeBundle\Routing\LegacyRouteLoader">
             <argument>%machine_legacy_bridge.legacy_path%</argument>
             <tag name="routing.loader"/>
         </service>
         <service id="machine_legacy_bridge.legacy_controller"
-                 class="Basster\LegacyBridgeBundle\Controller\LegacyScriptController">
+                 class="Machine\LegacyBridgeBundle\Controller\LegacyScriptController">
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>

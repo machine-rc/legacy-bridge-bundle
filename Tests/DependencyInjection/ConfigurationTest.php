@@ -1,8 +1,8 @@
 <?php
 
-namespace Basster\LegacyBridgeBundle\Tests\DependencyInjection;
+namespace Machine\LegacyBridgeBundle\Tests\DependencyInjection;
 
-use Basster\LegacyBridgeBundle\DependencyInjection\Configuration;
+use Machine\LegacyBridgeBundle\DependencyInjection\Configuration;
 use Symfony\Component\Config\Definition\ArrayNode;
 
 class ConfigurationTest extends \PHPUnit_Framework_TestCase

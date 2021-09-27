@@ -1,6 +1,6 @@
 <?php
 
-namespace Basster\LegacyBridgeBundle\Controller;
+namespace Machine\LegacyBridgeBundle\Controller;
 
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 /**
  * Class LegacyScriptController
  *
- * @package Basster\LegacyBridgeBundle\Controller
+ * @package Machine\LegacyBridgeBundle\Controller
  */
 class LegacyScriptController implements ContainerAwareInterface
 {

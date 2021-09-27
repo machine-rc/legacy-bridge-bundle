@@ -1,12 +1,12 @@
 <?php
 
-namespace Basster\LegacyBridgeBundle\Tests\DependencyInjection;
+namespace Machine\LegacyBridgeBundle\Tests\DependencyInjection;
 
-use Basster\LegacyBridgeBundle\DependencyInjection\BassterLegacyBridgeExtension;
+use Machine\LegacyBridgeBundle\DependencyInjection\MachineLegacyBridgeExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
-class BassterLegacyBridgeExtensionTest extends \PHPUnit_Framework_TestCase
+class MachineLegacyBridgeExtensionTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
@@ -20,7 +20,7 @@ class BassterLegacyBridgeExtensionTest extends \PHPUnit_Framework_TestCase
     ) {
         $bag = new ParameterBag();
 
-        $extension = new BassterLegacyBridgeExtension();
+        $extension = new MachineLegacyBridgeExtension();
         $extension->load($config, new ContainerBuilder($bag));
 
         self::assertEquals($path,

@@ -2,7 +2,7 @@
 <phpunit bootstrap="./vendor/autoload.php" colors="true">
 
     <testsuites>
-        <testsuite name="BassterLegacyBridgeBundle test suite">
+        <testsuite name="MachineLegacyBridgeBundle test suite">
             <directory suffix=".php">./Tests</directory>
         </testsuite>
     </testsuites>

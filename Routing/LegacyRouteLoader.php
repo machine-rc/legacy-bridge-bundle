@@ -1,6 +1,6 @@
 <?php
 
-namespace Basster\LegacyBridgeBundle\Routing;
+namespace Machine\LegacyBridgeBundle\Routing;
 
 use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\Finder\Finder;
@@ -91,7 +91,7 @@ class LegacyRouteLoader extends Loader
      */
     private function createLegacyRouteName(SplFileInfo $file)
     {
-        return 'basster.legacy.'.
+        return 'machine.legacy.'.
           str_replace(
             '/',
             '__',

@@ -1,8 +1,8 @@
 <?php
 
-namespace Basster\LegacyBridgeBundle\Tests\Routing;
+namespace Machine\LegacyBridgeBundle\Tests\Routing;
 
-use Basster\LegacyBridgeBundle\Routing\LegacyRouteLoader;
+use Machine\LegacyBridgeBundle\Routing\LegacyRouteLoader;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamFile;
 
@@ -24,7 +24,7 @@ class LegacyRouteLoaderTest extends \PHPUnit_Framework_TestCase
     {
         $routes = $this->routeLoader->load('.', 'legacy');
 
-        $legacyRoute = $routes->get('basster.legacy.hello');
+        $legacyRoute = $routes->get('machine.legacy.hello');
         $routePath   = '/hello.php';
 
         self::assertNotNull($legacyRoute);

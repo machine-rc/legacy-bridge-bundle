@@ -1,8 +1,8 @@
 <?php
 
-namespace Basster\LegacyBridgeBundle\Tests\Controller;
+namespace Machine\LegacyBridgeBundle\Tests\Controller;
 
-use Basster\LegacyBridgeBundle\Controller\LegacyScriptController;
+use Machine\LegacyBridgeBundle\Controller\LegacyScriptController;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\Finder\SplFileInfo;
 
