@@ -1,9 +1,9 @@
 {
-  "name": "basster/legacy-bridge-bundle",
+  "name": "buratinas/legacy-bridge-bundle",
   "type": "symfony-bundle",
-  "description": "Bridge Bundle for wrapping legacy php projects (e.g. without frontcontrollers) into a symfony application.",
+  "description": "Bridge Bundle for wrapping legacy php projects (e.g. without front controllers) into a symfony application.",
   "require": {
-    "symfony/framework-bundle": "~2.3|~3.0|~4.0"
+    "symfony/framework-bundle": "~2.3|~3.0|~4.0|~5.0"
   },
   "require-dev": {
     "mikey179/vfsStream": "^1.6",
@@ -19,7 +19,7 @@
   "minimum-stability": "stable",
   "autoload": {
     "psr-4": {
-      "Basster\\LegacyBridgeBundle\\": ""
+      "Buratinas\\LegacyBridgeBundle\\": ""
     }
   }
 }
