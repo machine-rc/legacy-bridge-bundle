@@ -24,30 +24,30 @@ class BassterLegacyBridgeExtensionTest extends \PHPUnit_Framework_TestCase
         $extension->load($config, new ContainerBuilder($bag));
 
         self::assertEquals($path,
-                           $bag->get('basster_legacy_bridge.legacy_path'));
+                           $bag->get('machine_legacy_bridge.legacy_path'));
         self::assertEquals($prepend,
-                           $bag->get('basster_legacy_bridge.prepend_script'));
+                           $bag->get('machine_legacy_bridge.prepend_script'));
         self::assertEquals($append,
-                           $bag->get('basster_legacy_bridge.append_script'));
+                           $bag->get('machine_legacy_bridge.append_script'));
     }
 
     public function provideConfigs()
     {
         $pathOnly = array(
-          'basster_legacy_bridge' => array(
+          'machine_legacy_bridge' => array(
             'legacy_path' => __DIR__,
           ),
         );
 
         $prependOnly                                            = $pathOnly;
-        $prependOnly['basster_legacy_bridge']['prepend_script'] = __FILE__;
+        $prependOnly['machine_legacy_bridge']['prepend_script'] = __FILE__;
 
         $appendOnly                                           = $pathOnly;
-        $appendOnly['basster_legacy_bridge']['append_script'] = __FILE__;
+        $appendOnly['machine_legacy_bridge']['append_script'] = __FILE__;
 
         $all                                            = $pathOnly;
-        $all['basster_legacy_bridge']['append_script']  = __FILE__;
-        $all['basster_legacy_bridge']['prepend_script'] = __FILE__;
+        $all['machine_legacy_bridge']['append_script']  = __FILE__;
+        $all['machine_legacy_bridge']['prepend_script'] = __FILE__;
 
         return array(
           'path-only'         => array($pathOnly, __DIR__, null, null),

@@ -50,7 +50,7 @@ class LegacyRouteLoader extends Loader
         $this->initFinder();
 
         $defaults = array(
-          '_controller' => 'basster_legacy_bridge.legacy_controller:runLegacyScript',
+          '_controller' => 'machine_legacy_bridge.legacy_controller:runLegacyScript',
         );
 
         /** @var SplFileInfo $file */

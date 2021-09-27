@@ -21,19 +21,19 @@ class BassterLegacyBridgeExtension extends ConfigurableExtension
     ) {
         $container->getParameterBag()
                   ->set(
-                    'basster_legacy_bridge.legacy_path',
+                    'machine_legacy_bridge.legacy_path',
                     $mergedConfig['legacy_path']
                   )
         ;
         $container->getParameterBag()
                   ->set(
-                    'basster_legacy_bridge.prepend_script',
+                    'machine_legacy_bridge.prepend_script',
                     $mergedConfig['prepend_script']
                   )
         ;
         $container->getParameterBag()
                   ->set(
-                    'basster_legacy_bridge.append_script',
+                    'machine_legacy_bridge.append_script',
                     $mergedConfig['append_script']
                   )
         ;

@@ -1,10 +1,5 @@
-BassterLegacyBridgeBundle
+MachineLegacyBridgeBundle
 =========================
-
-[![Build Status](https://travis-ci.org/Basster/legacy-bridge-bundle.svg?branch=master)](https://travis-ci.org/Basster/legacy-bridge-bundle)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Basster/legacy-bridge-bundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Basster/legacy-bridge-bundle/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/Basster/legacy-bridge-bundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Basster/legacy-bridge-bundle/?branch=master)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/8a657229-69dc-4244-9669-dfcea4b32f59/mini.png)](https://insight.sensiolabs.com/projects/8a657229-69dc-4244-9669-dfcea4b32f59)
 
 What is this?
 -------------
@@ -18,13 +13,13 @@ Inspired from [Modernizing with Symfony](https://slidr.io/derrabus/modernizing-w
 Installation
 ------------
 
-    composer require basster/legacy-bridge-bundle
+    composer require machine-rc/legacy-bridge-bundle
 
 Configuration
 -------------
 In your config.yml place:
 
-    basster_legacy_bridge:
+    machine_legacy_bridge:
         legacy_path:    '/full/path/to/my/legacy/project/files'
         # optional prepend script (see http://php.net/manual/en/ini.core.php#ini.auto-prepend-file)
         prepend_script: '/full/path/to/my/legacy/autoPrependFile.php' # can be ommited

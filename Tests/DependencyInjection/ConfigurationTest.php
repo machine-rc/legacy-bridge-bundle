@@ -15,7 +15,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
      */
     public function hasRootName()
     {
-        self::assertEquals('basster_legacy_bridge', $this->tree->getName());
+        self::assertEquals('machine_legacy_bridge', $this->tree->getName());
     }
 
     /**
