@@ -2,6 +2,7 @@
 
 namespace Machine\LegacyBridgeBundle\Controller;
 
+use Machine\LegacyBridgeBundle\Factory\LegacyRouteFactory;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -14,54 +15,23 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 class LegacyScriptController implements ContainerAwareInterface
 {
     /**
-     * @var ContainerInterface
+     * @var LegacyRouteFactory
      */
-    private $container;
+    private $legacyRouteFactory;
 
-    /** @var  string */
-    private $prependScript;
-
-    /** @var  string */
-    private $appendScript;
+    public function __construct(LegacyRouteFactory $legacyRouteFactory)
+    {
+        $this->legacyRouteFactory = $legacyRouteFactory;
+    }
 
     /**
      * @param $requestPath
-     * @param $legacyScript
      *
      * @return \Symfony\Component\HttpFoundation\StreamedResponse
      */
-    public function runLegacyScript($requestPath, $legacyScript)
+    public function runLegacyScript($requestPath)
     {
-        $container = $this->container;
-        $prepend   = $this->prependScript;
-        $append    = $this->appendScript;
-
-        $requireLegacyScript = function () use (
-          $requestPath,
-          $legacyScript,
-          $container,
-          $prepend,
-          $append
-        ) {
-            $_SERVER['PHP_SELF']          = $requestPath;
-            $_SERVER['SCRIPT_NAME']       = $requestPath;
-            $_SERVER['SCRIPT_FILENAME']   = $legacyScript;
-            $_SERVER['SYMFONY_CONTAINER'] = $container;
-            chdir(dirname($legacyScript));
-
-            if ($prepend) {
-                /** @noinspection PhpIncludeInspection */
-                require $prepend;
-            }
-
-            /** @noinspection PhpIncludeInspection */
-            require $legacyScript;
-
-            if ($append) {
-                /** @noinspection PhpIncludeInspection */
-                require $append;
-            }
-        };
+        $requireLegacyScript = $this->legacyRouteFactory->createRouteProcessor($requestPath);
 
         return new StreamedResponse($requireLegacyScript);
     }

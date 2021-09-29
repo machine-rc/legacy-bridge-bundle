@@ -27,7 +27,7 @@ In your config.yml place:
         append_script:  '/full/path/to/my/legacy/autoAppendFile.php' # can be ommited
 
 
-Legacy route loader:  
+#### Legacy route loader  
 
 - Implement generator class extending `Machine\LegacyBridgeBundle\Factory\LegacyRouteGeneratorInterface`. It should parse file and generate route as you see fit.
 - Update `services.yaml` to load your generator 
@@ -35,6 +35,15 @@ Legacy route loader:
     Machine\LegacyBridgeBundle\Factory\LegacyRouteFactory:
         calls:
             - [ addGenerator, [ '@App\Factory\LegacyTVSRouteGenerator'] ]
+```
+
+#### Legacy route processor
+- Implement processor class extending `Machine\LegacyBridgeBundle\Factory\LegacyRouteProcessorInterface`. It should provide closure that executes legacy controller loop
+- Update `services.yaml` to set your processor
+```yaml
+    Machine\LegacyBridgeBundle\Factory\LegacyRouteFactory:
+        calls:
+            - [ setRouteProcessor, [ '@App\Factory\LegacyTVSRouteProcessor'] ]
 ```
 
 On the legacy app
