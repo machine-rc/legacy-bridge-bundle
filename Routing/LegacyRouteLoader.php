@@ -2,10 +2,10 @@
 
 namespace Machine\LegacyBridgeBundle\Routing;
 
+use Machine\LegacyBridgeBundle\Factory\LegacyRouteFactory;
 use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
-use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
 class LegacyRouteLoader extends Loader
@@ -24,16 +24,22 @@ class LegacyRouteLoader extends Loader
     private $legacyPath;
 
     /**
+     * @var LegacyRouteFactory
+     */
+    private $legacyRouteFactory;
+
+    /**
      * LegacyRouteLoader constructor.
      *
      * @param string                                $legacyPath
      * @param \Symfony\Component\Finder\Finder|null $finder
      */
-    public function __construct(string $legacyPath, Finder $finder = null)
+    public function __construct(string $legacyPath, Finder $finder = null, LegacyRouteFactory $legacyRouteFactory)
     {
         parent::__construct();
         $this->finder     = $finder ?: new Finder();
         $this->legacyPath = $legacyPath;
+        $this->legacyRouteFactory = $legacyRouteFactory;
     }
 
     /**
@@ -50,17 +56,9 @@ class LegacyRouteLoader extends Loader
         $routes = new RouteCollection();
         $this->initFinder();
 
-        $defaults = array(
-          '_controller' => 'machine_legacy_bridge.legacy_controller:runLegacyScript',
-        );
-
         /** @var SplFileInfo $file */
         foreach ($this->finder as $file) {
-            $defaults['legacyScript'] = $file->getPathname();
-            $defaults['requestPath']  = '/'.$file->getRelativePathname();
-
-            $route = new Route($file->getRelativePathname(), $defaults);
-            $routes->add($this->createLegacyRouteName($file), $route);
+            $this->legacyRouteFactory->generateRoutes($file, $routes);
         }
 
         $this->loaded = true;
@@ -68,35 +66,16 @@ class LegacyRouteLoader extends Loader
         return $routes;
     }
 
-
-    /** {@inheritdoc} */
-    public function supports($resource, $type = null)
+    public function supports($resource, $type = null): bool
     {
         return 'legacy' === $type && \is_dir($this->legacyPath) && \is_readable($this->legacyPath);
     }
 
-    /**
-     * @throws \InvalidArgumentException
-     */
-    private function initFinder()
+    private function initFinder(): void
     {
         $this->finder->ignoreDotFiles(true)
                      ->files()
                      ->name('*.php')
                      ->in($this->legacyPath);
-    }
-    /**
-     * @param SplFileInfo $file
-     *
-     * @return string
-     */
-    private function createLegacyRouteName(SplFileInfo $file)
-    {
-        return 'machine.legacy.'.
-          str_replace(
-            '/',
-            '__',
-            substr($file->getRelativePathname(), 0, -4)
-          );
     }
 }

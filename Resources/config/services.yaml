@@ -3,6 +3,17 @@ services:
     autowire: true
     autoconfigure: true
 
+#  _instanceof:
+#    Machine\LegacyBridgeBundle\Factory\LegacyRouteGeneratorInterface:
+#      tags: [ 'machine.legacy_route_generator' ]
+
+#  Machine\LegacyBridgeBundle\Factory\LegacyRouteFactory:
+#    public: true
+#    arguments:
+#      - !tagged_iterator machine.legacy_route_generator
+
+#  Machine\LegacyBridgeBundle\Factory\LegacyRouteGeneratorInterface: '@Machine\LegacyBridgeBundle\Factory\LegacyRouteFactory'
+
   machine_legacy_bridge.routing_loader:
     class: Machine\LegacyBridgeBundle\Routing\LegacyRouteLoader
     arguments:

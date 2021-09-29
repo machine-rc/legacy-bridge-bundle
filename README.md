@@ -26,6 +26,17 @@ In your config.yml place:
         # optional append script (see http://php.net/manual/en/ini.core.php#ini.auto-append-file)
         append_script:  '/full/path/to/my/legacy/autoAppendFile.php' # can be ommited
 
+
+Legacy route loader:  
+
+- Implement generator class extending `Machine\LegacyBridgeBundle\Factory\LegacyRouteGeneratorInterface`. It should parse file and generate route as you see fit.
+- Update `services.yaml` to load your generator 
+```yaml
+    Machine\LegacyBridgeBundle\Factory\LegacyRouteFactory:
+        calls:
+            - [ addGenerator, [ '@App\Factory\LegacyTVSRouteGenerator'] ]
+```
+
 On the legacy app
 -----------------
 
