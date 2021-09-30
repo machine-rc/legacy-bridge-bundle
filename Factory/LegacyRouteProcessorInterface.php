@@ -6,5 +6,5 @@ use Closure;
 
 interface LegacyRouteProcessorInterface
 {
-    public function createRouteProcessor(string $requestPath): Closure;
+    public function createRouteProcessor(string $requestPath, string $filePath): Closure;
 }

@@ -26,13 +26,13 @@ class LegacyRouteFactory implements LegacyRouteGeneratorInterface, LegacyRoutePr
         });
     }
 
-    public function createRouteProcessor(string $requestPath): Closure
+    public function createRouteProcessor(string $requestPath, string $filePath): Closure
     {
         if (!$this->routeProcessor instanceof LegacyRouteProcessorInterface) {
             return static function () {};
         }
 
-        return $this->routeProcessor->createRouteProcessor($requestPath);
+        return $this->routeProcessor->createRouteProcessor($requestPath, $filePath);
     }
 
     public function getRouteProcessor(): LegacyRouteProcessorInterface

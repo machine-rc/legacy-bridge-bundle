@@ -15,23 +15,18 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 class LegacyScriptController implements ContainerAwareInterface
 {
     /**
-     * @var LegacyRouteFactory
+     * @var ContainerInterface
      */
-    private $legacyRouteFactory;
+    private $container;
 
-    public function __construct(LegacyRouteFactory $legacyRouteFactory)
+    public function runLegacyScript(string $requestPath, string $filePath): StreamedResponse
     {
-        $this->legacyRouteFactory = $legacyRouteFactory;
-    }
+        $legacyRouteFactory = $this->container->get(LegacyRouteFactory::class);
 
-    /**
-     * @param $requestPath
-     *
-     * @return \Symfony\Component\HttpFoundation\StreamedResponse
-     */
-    public function runLegacyScript($requestPath)
-    {
-        $requireLegacyScript = $this->legacyRouteFactory->createRouteProcessor($requestPath);
+        $requireLegacyScript = static function () {};
+        if ($legacyRouteFactory instanceof LegacyRouteFactory) {
+            $requireLegacyScript = $legacyRouteFactory->createRouteProcessor($requestPath, $filePath);
+        }
 
         return new StreamedResponse($requireLegacyScript);
     }

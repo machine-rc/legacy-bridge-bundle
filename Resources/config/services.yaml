@@ -21,8 +21,13 @@ services:
     tags: ['routing.loader']
     public: true
 
+  Machine\LegacyBridgeBundle\Factory\LegacyRouteFactory:
+    public: true
+
   machine_legacy_bridge.legacy_controller:
     class: Machine\LegacyBridgeBundle\Controller\LegacyScriptController
+    arguments:
+      - '@Machine\LegacyBridgeBundle\Factory\LegacyRouteFactory'
     calls:
       - setContainer: ['@service_container']
       - setPrependScript: ['%machine_legacy_bridge.prepend_script%']
