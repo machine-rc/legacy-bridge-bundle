@@ -6,6 +6,7 @@ use Machine\LegacyBridgeBundle\Factory\LegacyRouteFactory;
 use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
+use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
 class LegacyRouteLoader extends Loader
@@ -54,6 +55,8 @@ class LegacyRouteLoader extends Loader
         }
 
         $routes = new RouteCollection();
+
+        $this->legacyRouteFactory->generateRoutes($this->loadLegacyRoute($routes), $routes);
         $this->initFinder();
 
         /** @var SplFileInfo $file */
@@ -64,6 +67,17 @@ class LegacyRouteLoader extends Loader
         $this->loaded = true;
 
         return $routes;
+    }
+
+    private function loadLegacyRoute(RouteCollection $routeCollection): SplFileInfo
+    {
+        $defaults['_controller'] = 'Machine\LegacyBridgeBundle\Controller\LegacyScriptController::runLegacyScript';
+        $defaults['requestPath'] = '/';
+        $defaults['filePath'] = '/home/index';
+        $route = new Route('/legacy', $defaults);
+        $routeCollection->add('machine.legacy.home', $route);
+
+        return new SplFileInfo('home.php', '/', 'home.php');
     }
 
     public function supports($resource, $type = null): bool
