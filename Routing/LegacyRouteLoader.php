@@ -68,14 +68,23 @@ class LegacyRouteLoader extends Loader
 
     public function supports($resource, $type = null): bool
     {
-        return 'legacy' === $type && \is_dir($this->legacyPath) && \is_readable($this->legacyPath);
+        return 'legacy' === $type;
     }
 
     private function initFinder(): void
     {
+        if (\is_dir($this->legacyPath) && \is_readable($this->legacyPath)) {
+            $this->finder->ignoreDotFiles(true)
+                ->files()
+                ->name('*.php')
+                ->in($this->legacyPath);
+
+            return;
+        }
+
         $this->finder->ignoreDotFiles(true)
-                     ->files()
-                     ->name('*.php')
-                     ->in($this->legacyPath);
+            ->files()
+            ->name('ignoreEverything')
+            ->in(__DIR__);
     }
 }
